@@ -1,0 +1,18 @@
+appmap_dir: tmp/appmap
+language: python
+name: Crimereport
+packages:
+  - path: pip
+  - path: setuptools
+  - path: colorama
+  - path: jinja2
+  - path: _distutils_hack
+  - path: blinker
+  - path: sqlalchemy
+  - path: werkzeug
+  - path: markupsafe
+  - path: pkg_resources
+  - path: click
+  - path: itsdangerous
+  - path: flask
+  - path: greenlet

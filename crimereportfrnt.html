@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Entry Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        header {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 30px;
+        } 
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FF5733;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="addressForm">
+        <header for="header">Report A Crime Below</header>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="street">Street Address:</label>
+        <input type="text" id="street" name="street" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required>
+
+        <label for="zip">ZIP Code:</label>
+        <input type="text" id="zip" name="zip" required>
+
+        <label for="crime">Description of Crime:</label>
+        <input type="text" id="crime" name="crime" required>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+
+        <header for="header">Find Crimes Below</header>
+
+        <label for="label">Crime in Given ZIP Code:</label>
+        <input type="text" id="frmzip" name="frmzip" required>
+
+        <input type="checkbox" id="violent" name="violent" value="VCrime">
+        <label for="violent">Check For Violent Crime</label><br>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+
+    </form>
+
+    <script>
+        function submitForm() {
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                street: document.getElementById('street').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                crime: document.getElementById('crime').value,
+                violent: document.getElementById('violent').checked,
+            };
+
+            // Send data to the backend (you need to implement this part)
+            // For example, using fetch API
+            fetch('/api/submitAddress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the backend (if needed)
+                console.log('Response from server:', data);
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>

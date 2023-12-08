@@ -74,15 +74,22 @@
         <label for="crime">Description of Crime:</label>
         <input type="text" id="crime" name="crime" required>
 
+        <label for="Precinct">Enter Nearest Precinct:</label>
+        <input type="text" id="Precinct" name="Precinct" required>
+
         <button type="button" onclick="submitForm()">Submit</button>
+
+        <label for="violent">Check For Violent Crime</label><br>
+        <input type="checkbox" id="violent" name="violent" value="VCrime">
+
+        <label for="violent">Check For Missing Person</label><br>
+        <input type="checkbox" id="missing" name="missing" value="missing">
 
         <header for="header">Find Crimes Below</header>
 
         <label for="label">Crime in Given ZIP Code:</label>
         <input type="text" id="frmzip" name="frmzip" required>
 
-        <input type="checkbox" id="violent" name="violent" value="VCrime">
-        <label for="violent">Check For Violent Crime</label><br>
         
         <button type="button" onclick="submitForm()">Submit</button>
 

@@ -1,5 +1,22 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask import render_template, redirect
+from flask_cors import CORS
+import json
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+@app.route('/api/submitAddress', methods=['POST'])
+def submit_address():
+    try:
+        data = request.get_json()
+        # Process the data as needed
+        print('Received data:', data)
+        return json.dumps({'success': True}), 200, {'ContentType':'application/json'}
+    except Exception as e:
+        print('Error processing data:', str(e))
+        return json.dumps({'success': False}), 500, {'ContentType':'application/json'}
 
 app = Flask(__name__)
 
@@ -245,8 +262,27 @@ def handle_missingperson(id):
         db.session.delete(missing_person)
         db.session.commit()
         return jsonify({'message': 'Missing person deleted'})
+    
+
+# Create a route to display recorded data
+@app.route('/recordedCrimes')
+def recorded_crimes():
+    # Retrieve all crime details from the database
+    crime_details = CrimeDetails.query.all()
+
+    # Render a template to display the recorded data
+    return render_template('rec_crimes.html', crime_details=crime_details)
+
+# Create a route to display recorded data with a given ZIP code
+@app.route('/recordedCrimes/<string:zip_code>')
+def recorded_crimes_by_zip(zip_code):
+    # Retrieve all crime details with the specified ZIP code from the database
+    crime_details = CrimeDetails.query.join(Location).filter(Location.zipcode == zip_code).all()
+
+    # Render a template to display the recorded data
+    return render_template('rec_crimes.html', crime_details=crime_details)
 
 
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True)
+

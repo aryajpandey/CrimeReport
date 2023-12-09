@@ -1,0 +1,23 @@
+<!-- Save this content in a file named "recorded_crimes.html" -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorded Crimes</title>
+    <!-- Add any additional styling if needed -->
+</head>
+<body>
+
+    <h1>Recorded Crimes</h1>
+
+    <ul>
+        {% for crime_detail in crime_details %}
+            <li>{{ crime_detail.crime_description }} - {{ "Violent" if crime_detail.violent else "Non-Violent" }}</li>
+            <!-- Add other fields as needed -->
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

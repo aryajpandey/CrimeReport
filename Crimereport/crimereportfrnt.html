@@ -85,15 +85,17 @@
 
         <button type="button" onclick="submitForm()">Submit</button>
 
-        <header for="header">Find Crimes Below</header>
-
-        <label for="label">Crime in Given ZIP Code:</label>
-        <input type="text" id="frmzip" name="frmzip" required>
-
         
-        <button type="button" onclick="submitForm()">Submit</button>
-
     </form>
+    
+    <!-- Add action and method attributes to the second form tag -->
+    <form action="/recordedCrimes" method="get">
+        <header for="header">Find Crimes Below</header>
+        <label for="frmzip">Enter ZIP Code:</label>
+        <input type="text" id="frmzip" name="zip_code" required>
+        <button type="submit">Submit</button>
+    </form>
+
 
     <script>
         function submitForm() {

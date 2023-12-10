@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask import render_template, redirect
 from flask_cors import CORS
 import json
 
@@ -22,10 +21,8 @@ def submit_address():
         print('Error processing data:', str(e))
         return json.dumps({'success': False}), 500, {'ContentType':'application/json'}
 
-app = Flask(__name__)
-
 # Configure your PostgreSQL database URI
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:anu7dhruv@localhost/Crime'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:passkey@localhost/Crime'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

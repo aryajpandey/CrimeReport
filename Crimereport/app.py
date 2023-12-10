@@ -7,6 +7,10 @@ import json
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+@app.route('/crimereportfrnt')
+def serve_frontend():
+    return render_template('crimereportfrnt.html')
+
 @app.route('/api/submitAddress', methods=['POST'])
 def submit_address():
     try:
@@ -281,6 +285,7 @@ def recorded_crimes_by_zip(zip_code):
 
     # Render a template to display the recorded data
     return render_template('rec_crimes.html', crime_details=crime_details)
+
 
 
 if __name__ == '__main__':
